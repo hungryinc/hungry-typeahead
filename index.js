@@ -3,6 +3,8 @@
 angular.module('hgTypeahead', [])
 
 .directive('hungryTypeahead', ['$compile', '$q', function($compile, $q) {
+    var fs = require('fs')
+    
     return {
         restrict: 'A',
         scope: {
@@ -11,7 +13,7 @@ angular.module('hgTypeahead', [])
         },
         require: ['ngModel'],
         link: function(scope, element, attrs, controllers) {
-            element.after($compile(require('./html/matches.html'))(scope));
+            element.after($compile(fs.readFileSync(__dirname + '/html/matches.html', 'utf8'))(scope));
 
             scope.$watch('ngModel', function(search) {
                 var deferred = $q.defer();
