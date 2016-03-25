@@ -8,7 +8,15 @@
   },
   "author": "",
   "license": "ISC",
+  "browserify": {
+    "transform": [
+      "brfs"
+    ]
+  },
   "dependencies": {
     "fs": "0.0.2"
+  },
+  "devDependencies": {
+    "brfs": "^1.4.3"
   }
 }

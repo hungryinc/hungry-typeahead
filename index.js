@@ -14,8 +14,7 @@ angular.module('hgTypeahead', [])
         require: ['ngModel'],
         link: function(scope, element, attrs, controllers) {
             console.log('Foo Bar')
-            var html = fs.readFileSync(__dirname + '/html/matches.html', 'utf8');
-            element.after($compile(html)(scope));
+            element.after($compile(fs.readFileSync(__dirname + '/html/matches.html', 'utf8'))(scope));
 
             scope.$watch('ngModel', function(search) {
                 var deferred = $q.defer();
