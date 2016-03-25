@@ -1,10 +1,10 @@
 'use strict';
 
+var fs = require('fs')
+
 angular.module('hgTypeahead', [])
 
-.directive('hungryTypeahead', ['$compile', '$q', function($compile, $q) {
-    var fs = require('fs')
-    
+.directive('hungryTypeahead', ['$compile', '$q', function($compile, $q) {    
     return {
         restrict: 'A',
         scope: {
