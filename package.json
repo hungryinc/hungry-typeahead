@@ -14,6 +14,7 @@
     ]
   },
   "dependencies": {
+    "angular-sanitize": "^1.5.2",
     "fs": "0.0.2"
   },
   "devDependencies": {
