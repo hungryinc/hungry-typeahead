@@ -14,8 +14,12 @@ angular.module('hgTypeahead', [
         scope: {
             ngModel: '=',
             hungryTypeahead: '&',
+            onSelect: '&',
         },
-        require: ['ngModel'],
+        require: ['ngModel', 'hungryTypeahead'],
+        controller: function() {
+
+        },
         link: function(scope, element, attrs, controllers) {
             element.after($compile(fs.readFileSync(__dirname + '/html/matches.html', 'utf8'))(scope));
 
@@ -33,7 +37,13 @@ angular.module('hgTypeahead', [
                         scope.matches = matches.filter(function(match) {
                             return match.match(searchExpression)
                         }).map(function(match) {
-                            return match.replace(searchExpression, '<span class="match">$1</span>');
+                            return {
+                                select: function() {
+                                    scope.onSelect({match: this});
+                                },
+                                original: match,
+                                string: match.replace(searchExpression, '<span class="match">$1</span>')
+                            }
                         })
                     })
                 } else {
