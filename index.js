@@ -32,18 +32,18 @@ angular.module('hgTypeahead', [
                     var searchExpression = new RegExp("(" + sanitized + ")", "gi");
 
                     scope.hungryTypeahead({
-                        search: angular.extend({}, deferred, {string: search})
+                        search: angular.extend({}, deferred, {title: search})
                     }).then(function(matches) {
                         scope.matches = matches.filter(function(match) {
-                            return match.match(searchExpression)
+                            return match.title.match(searchExpression)
                         }).map(function(match) {
-                            return {
+                            return angular.extend(match, {
                                 select: function() {
                                     scope.onSelect({match: this});
                                 },
-                                original: match,
-                                string: match.replace(searchExpression, '<span class="match">$1</span>')
-                            }
+                                title: match.title,
+                                match: match.title.replace(searchExpression, '<span class="match">$1</span>')
+                            })
                         })
                     })
                 } else {
