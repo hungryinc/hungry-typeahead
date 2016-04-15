@@ -34,9 +34,7 @@ angular.module('hgTypeahead', [
                     scope.hungryTypeahead({
                         search: angular.extend({}, deferred, {title: search})
                     }).then(function(matches) {
-                        scope.matches = matches.filter(function(match) {
-                            return match.title.match(searchExpression)
-                        }).map(function(match) {
+                        scope.matches = matches.map(function(match) {
                             return angular.extend(match, {
                                 select: function() {
                                     scope.onSelect({match: this});
